@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
-    @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var tipSlider: UISlider!
+    @IBOutlet weak var tipDisplay: UILabel!
+    @IBOutlet weak var tipStepper: UIStepper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +32,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func calculateTip(sender: AnyObject) {
-        let tipPercentages = [0.15, 0.18, 0.2]
-        
         let bill = Double(billField.text!) ?? 0
-        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
+        let tip = bill * Double(tipSlider.value)
         let total = bill + tip
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
     }
     
+    @IBAction func updateTipPercentage(sender: AnyObject) {
+        let percent = 100 * tipSlider.value
+        tipDisplay.text = String(format: "%.2f%%", percent)
+    }
+    
+    @IBAction func updateTipSlider(sender: AnyObject) {
+        tipSlider.value = Float(tipStepper.value)
+        updateTipPercentage(sender)
+        calculateTip(sender)
+    }
+    
+    // Lifecycle Actions.
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         print("view will appear")
