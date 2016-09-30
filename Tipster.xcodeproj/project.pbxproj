@@ -14,7 +14,7 @@
 		1008190C1D9E386700263239 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1008190A1D9E386700263239 /* LaunchScreen.storyboard */; };
 		100819171D9E386800263239 /* TipsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100819161D9E386800263239 /* TipsterTests.swift */; };
 		100819221D9E386800263239 /* TipsterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100819211D9E386800263239 /* TipsterUITests.swift */; };
-		100819301D9E439800263239 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1008192F1D9E439800263239 /* SettingsViewController.swift */; };
+		100819321D9F0DB400263239 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100819311D9F0DB400263239 /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,7 @@
 		1008191D1D9E386800263239 /* TipsterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipsterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		100819211D9E386800263239 /* TipsterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsterUITests.swift; sourceTree = "<group>"; };
 		100819231D9E386800263239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1008192F1D9E439800263239 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		100819311D9F0DB400263239 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = ../SettingsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +99,10 @@
 		100819001D9E386700263239 /* Tipster */ = {
 			isa = PBXGroup;
 			children = (
+				100819311D9F0DB400263239 /* SettingsTableViewController.swift */,
 				100819011D9E386700263239 /* AppDelegate.swift */,
 				100819031D9E386700263239 /* ViewController.swift */,
 				100819051D9E386700263239 /* Main.storyboard */,
-				1008192F1D9E439800263239 /* SettingsViewController.swift */,
 				100819081D9E386700263239 /* Assets.xcassets */,
 				1008190A1D9E386700263239 /* LaunchScreen.storyboard */,
 				1008190D1D9E386700263239 /* Info.plist */,
@@ -261,7 +261,7 @@
 			files = (
 				100819041D9E386700263239 /* ViewController.swift in Sources */,
 				100819021D9E386700263239 /* AppDelegate.swift in Sources */,
-				100819301D9E439800263239 /* SettingsViewController.swift in Sources */,
+				100819321D9F0DB400263239 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +486,7 @@
 				100819281D9E386800263239 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		100819291D9E386800263239 /* Build configuration list for PBXNativeTarget "TipsterTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +495,7 @@
 				1008192B1D9E386800263239 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1008192C1D9E386800263239 /* Build configuration list for PBXNativeTarget "TipsterUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +504,7 @@
 				1008192E1D9E386800263239 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
