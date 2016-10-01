@@ -56,6 +56,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set bill field as first responder.
+        billField.becomeFirstResponder()
+        
         // store original default values
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setDouble(0.15, forKey: "percent")

@@ -83,7 +83,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     @IBAction func updateTip(sender: AnyObject) {
-        let tip = Double(tipStepText.text!) ?? 0.15
+        let tip = Double(tipText.text!) ?? 0.15
     let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setDouble(tip, forKey: "percent")
     }
