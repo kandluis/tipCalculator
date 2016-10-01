@@ -77,7 +77,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
                                 <connections>
-                                    <action selector="billAmountChanged:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="WOq-ut-YeR"/>
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="EL4-xD-q5Y"/>
                                 </connections>
                             </textField>

@@ -36,10 +36,8 @@ class ViewController: UIViewController {
         tipStepper.value = percent
         tipSlider.value = Float(percent)
         tipDisplay.text = self.formatPercent(percent)
-    }
     
-    func formatBillField(input: Double) -> String {
-        return String(format: "$%.2f", input)
+        self.calculateTip("empty")
     }
 
     // Lifecycle Actions.
@@ -55,10 +53,6 @@ class ViewController: UIViewController {
         self.updateUI()
     }
     
-    @IBAction func billAmountChanged(sender: AnyObject) {
-        billField.text = self.formatBillField(Double(billField.text!) ?? 0)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
