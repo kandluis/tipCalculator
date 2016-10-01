@@ -73,9 +73,7 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func switchChange(sender: AnyObject) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setBool(taxSwitch.on, forKey: "switch")
-        if taxSwitch.on {
-            self.locationChange(sender)
-        }
+        self.locationChange(sender)
     }
     
     @IBAction func updateStepSize(sender: AnyObject) {
@@ -110,6 +108,9 @@ class SettingsTableViewController: UITableViewController {
         // Calculate the tax rate if tax is turned on
         if taxSwitch.on {
             self.calcTax(taxData[row])
+        }
+        else {
+            self.calcTax(0.0)
         }
         
     }
