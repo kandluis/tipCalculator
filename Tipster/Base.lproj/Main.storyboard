@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Tip Calculator-->
+        <!--Calculator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tipster" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,19 +39,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Bill Amount" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="hkH-tc-rDy">
-                                <rect key="frame" x="20" y="99" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="Enter the amount of your bill" label="Bill Amount">
-                                    <accessibilityTraits key="traits" none="YES"/>
-                                </accessibility>
-                                <color key="textColor" red="0.27055868825247931" green="0.28190224697334432" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
-                                <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="EL4-xD-q5Y"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AvJ-Xx-sqj">
                                 <rect key="frame" x="103" y="163" width="197" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,6 +67,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Bill Amount" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="hkH-tc-rDy">
+                                <rect key="frame" x="20" y="99" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Enter the amount of your bill" label="Bill Amount">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <color key="textColor" red="0.27055868825247931" green="0.28190224697334432" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
+                                <connections>
+                                    <action selector="billAmountChanged:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="WOq-ut-YeR"/>
+                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="EL4-xD-q5Y"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -87,8 +88,8 @@
                             <outletCollection property="gestureRecognizers" destination="OKx-Wy-tTy" appends="YES" id="NML-xw-U00"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Tip Calculator" id="3ms-pW-Ovb">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="8sv-36-wgx" userLabel="Settings">
+                    <navigationItem key="navigationItem" title="Calculator" id="3ms-pW-Ovb">
+                        <barButtonItem key="rightBarButtonItem" id="8sv-36-wgx" userLabel="Settings">
                             <connections>
                                 <segue destination="eT8-KU-5AA" kind="push" id="kbL-72-gRf"/>
                             </connections>
@@ -96,6 +97,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="hkH-tc-rDy" id="G3F-Wp-XMY"/>
+                        <outlet property="calculatorNavigation" destination="3ms-pW-Ovb" id="T3g-zq-O0i"/>
+                        <outlet property="settingButton" destination="8sv-36-wgx" id="DOV-CP-alW"/>
                         <outlet property="tipDisplay" destination="ARE-F0-Slu" id="wj7-9U-4Z0"/>
                         <outlet property="tipLabel" destination="AvJ-Xx-sqj" id="bOo-uO-t9y"/>
                         <outlet property="tipSlider" destination="J62-ZI-dKw" id="sVY-Ii-ETL"/>
@@ -120,6 +123,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GRJ-sb-4ow">
+                            <rect key="frame" x="0.0" y="407.5" width="320" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Cupertino"/>
+                                <segment title="Nacogdoches"/>
+                                <segment title="Cambridge"/>
+                            </segments>
+                            <connections>
+                                <action selector="locationChange:" destination="eT8-KU-5AA" eventType="valueChanged" id="R6j-0e-kBJ"/>
+                            </connections>
+                        </segmentedControl>
                         <sections>
                             <tableViewSection headerTitle="About" id="hcr-kj-dl9">
                                 <cells>
@@ -130,7 +145,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GDH-7O-d1t">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright Luis Perez 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GDH-7O-d1t">
                                                     <rect key="frame" x="8" y="11" width="304" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -152,16 +167,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" textAlignment="right" minimumFontSize="17" id="6Kj-L7-z3G">
-                                                    <rect key="frame" x="209" y="8" width="97" height="30"/>
+                                                    <rect key="frame" x="209" y="6" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
-                                                        <action selector="updateStepSize:" destination="eT8-KU-5AA" eventType="valueChanged" id="dYk-RH-wXr"/>
+                                                        <action selector="updateStepSize:" destination="eT8-KU-5AA" eventType="editingDidEnd" id="xBk-KN-iv2"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Step Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ciy-DF-YHa">
-                                                    <rect key="frame" x="20" y="11" width="101" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Step Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0NQ-LO-sn5">
+                                                    <rect key="frame" x="8" y="9" width="101" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -176,6 +191,24 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9wy-O9-O6B" id="Ale-zt-9AW">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Tip Percentage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HCV-MD-wGN">
+                                                    <rect key="frame" x="8" y="8" width="187" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.15" textAlignment="right" minimumFontSize="17" id="EmI-tH-QiZ">
+                                                    <rect key="frame" x="215" y="3" width="97" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                    <connections>
+                                                        <action selector="updateTip:" destination="eT8-KU-5AA" eventType="editingDidEnd" id="m3n-c3-bI5"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -188,27 +221,39 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W7O-ZG-iAF" id="a33-9b-GzY">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="xlV-dN-FW0">
+                                                    <rect key="frame" x="249" y="8" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="switchChange:" destination="eT8-KU-5AA" eventType="valueChanged" id="MUL-TW-rkq"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include Tax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h11-m4-9Yb">
+                                                    <rect key="frame" x="14" y="11" width="194" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="eT8-KU-5AA" id="kVE-tH-l2Z"/>
-                            <outlet property="delegate" destination="eT8-KU-5AA" id="gtK-j8-F7z"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="sgT-Bi-GXW"/>
                     <connections>
-                        <outlet property="tipStepText" destination="6Kj-L7-z3G" id="SHi-2V-qeR"/>
+                        <outlet property="copyRightLabel" destination="GDH-7O-d1t" id="rDn-Ba-NAd"/>
+                        <outlet property="locationPicker" destination="GRJ-sb-4ow" id="Fse-Bm-apj"/>
+                        <outlet property="settingsNavigation" destination="sgT-Bi-GXW" id="0op-Np-1MT"/>
+                        <outlet property="taxSwitch" destination="xlV-dN-FW0" id="3L2-30-05x"/>
+                        <outlet property="tipStepText" destination="6Kj-L7-z3G" id="NSu-Jn-AAY"/>
+                        <outlet property="tipText" destination="EmI-tH-QiZ" id="yv4-hb-6pl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2L-XP-Pmj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="f8n-Ei-ldG">
-                    <connections>
-                        <action selector="loseFocus:" destination="eT8-KU-5AA" id="VfJ-Zu-xWA"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="904" y="327"/>
         </scene>
