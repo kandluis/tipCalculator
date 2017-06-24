@@ -45,14 +45,14 @@ class SettingsTableViewController: UITableViewController {
         copyRightLabel.text = "Luis A. Perez \u{00A9} 2016"
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let stepSize = defaults.doubleForKey("stepSize")
-        let percent = defaults.doubleForKey("percent")
-        let taxRow = defaults.integerForKey("taxRow")
-        let turnedOn = defaults.boolForKey("switch")
+        let defaults = UserDefaults.standard
+        let stepSize = defaults.double(forKey: "stepSize")
+        let percent = defaults.double(forKey: "percent")
+        let taxRow = defaults.integer(forKey: "taxRow")
+        let turnedOn = defaults.bool(forKey: "switch")
         
         // Update with what we know
         tipStepText.text = String(format: "%d", Int(stepSize * 100))
@@ -61,52 +61,52 @@ class SettingsTableViewController: UITableViewController {
         locationPicker.selectedSegmentIndex = taxRow ?? 0;
     }
     
-    func loseFocus(sender: AnyObject) {
+    func loseFocus(_ sender: AnyObject) {
         view.endEditing(true)
     }
     
-    func calcTax(taxRate: Double) -> () {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setDouble(taxRate, forKey: "taxRate")
+    func calcTax(_ taxRate: Double) -> () {
+        let defaults = UserDefaults.standard
+        defaults.set(taxRate, forKey: "taxRate")
     }
     
-    @IBAction func switchChange(sender: AnyObject) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(taxSwitch.on, forKey: "switch")
+    @IBAction func switchChange(_ sender: AnyObject) {
+        let defaults = UserDefaults.standard
+        defaults.set(taxSwitch.isOn, forKey: "switch")
         self.locationChange(sender)
     }
     
-    @IBAction func updateStepSize(sender: AnyObject) {
+    @IBAction func updateStepSize(_ sender: AnyObject) {
         let step = (Double(tipStepText.text!) ?? 5.0) / 100
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setDouble(step, forKey: "stepSize")
+        let defaults = UserDefaults.standard
+        defaults.set(step, forKey: "stepSize")
     }
     
-    @IBAction func updateTip(sender: AnyObject) {
+    @IBAction func updateTip(_ sender: AnyObject) {
         let tip = Double(tipText.text!) ?? 0.15
-    let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setDouble(tip, forKey: "percent")
+    let defaults = UserDefaults.standard
+        defaults.set(tip, forKey: "percent")
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sectionRows[section]
     }
     
-    @IBAction func locationChange(sender: AnyObject) {
+    @IBAction func locationChange(_ sender: AnyObject) {
         let row = locationPicker.selectedSegmentIndex
 
         // Save settings
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(row, forKey: "taxRow")
+        let defaults = UserDefaults.standard
+        defaults.set(row, forKey: "taxRow")
         
         // Calculate the tax rate if tax is turned on
-        if taxSwitch.on {
+        if taxSwitch.isOn {
             self.calcTax(taxData[row])
         }
         else {

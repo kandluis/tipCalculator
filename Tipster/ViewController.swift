@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var calculatorNavigation: UINavigationItem!
     
     // Format string from percentage tip.
-    func formatPercent(tip: Double) -> String{
+    func formatPercent(_ tip: Double) -> String{
         return String(format: "%.2f%%", tip * 100)
     }
     
@@ -37,18 +37,18 @@ class ViewController: UIViewController {
         tipSlider.value = Float(percent)
         tipDisplay.text = self.formatPercent(percent)
     
-        self.calculateTip("empty")
+        self.calculateTip("empty" as AnyObject)
     }
 
     // Lifecycle Actions.
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Load default values from storage. 
-        let defaults = NSUserDefaults.standardUserDefaults()
-        self.percent = defaults.doubleForKey("percent")
-        self.stepSize = defaults.doubleForKey("stepSize")
-        self.taxRate = defaults.doubleForKey("taxRate")
+        let defaults = UserDefaults.standard
+        self.percent = defaults.double(forKey: "percent")
+        self.stepSize = defaults.double(forKey: "stepSize")
+        self.taxRate = defaults.double(forKey: "taxRate")
         
         self.updateUI()
     }
@@ -60,10 +60,10 @@ class ViewController: UIViewController {
         billField.becomeFirstResponder()
         
         // store original default values
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setDouble(0.15, forKey: "percent")
-        defaults.setDouble(0.05, forKey: "stepSize")
-        defaults.setDouble(0.0, forKey: "taxRate")
+        let defaults = UserDefaults.standard
+        defaults.set(0.15, forKey: "percent")
+        defaults.set(0.05, forKey: "stepSize")
+        defaults.set(0.0, forKey: "taxRate")
         
         // Set Unicode code for buttons
         settingButton.title = "\u{2699}"
@@ -72,12 +72,12 @@ class ViewController: UIViewController {
 
     // When the text field loses focus, end editing
     // session.
-    @IBAction func loseFocus(sender: AnyObject) {
+    @IBAction func loseFocus(_ sender: AnyObject) {
         view.endEditing(true)
     }
     
     // The tip slider is the ab
-    @IBAction func calculateTip(sender: AnyObject) {
+    @IBAction func calculateTip(_ sender: AnyObject) {
         let bill = Double(billField.text!) ?? 0
         let tip = bill * self.percent!
         let tax = bill * self.taxRate!
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         totalLabel.text = String(format: "$%.2f", total)
     }
     
-    @IBAction func updateTipPercentage(sender: AnyObject) {
+    @IBAction func updateTipPercentage(_ sender: AnyObject) {
         let tipSliderValue = Double(Int((Double(tipSlider.value) / self.stepSize!))) * self.stepSize!
         // slider changed in value
         if tipSliderValue != self.percent {
